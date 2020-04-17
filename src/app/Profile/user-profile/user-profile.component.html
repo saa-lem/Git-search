@@ -1,0 +1,74 @@
+<div class="container-fluid">
+    <div class="all">
+        <ng-progress></ng-progress>
+        <img src="https://res.cloudinary.com/dzawgnnlr/image/upload/q_auto/f_auto/w_auto/github_logo.png" alt="git" width="150" height="150" class="logo">
+        <h1 class="display-4 text-center animated slideInLeft">~ GitHub Search ~</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <h3 class="text-center">Input Info</h3>
+                <form class="form-group" id="brian">
+                    <input type="text" class="form-control" placeholder="Input your username" [(ngModel)]="username" name="username" (keyup)="getProfile()" maxlength="20">
+                    <br>
+                    <button class="btn btn-primary">Search</button>
+                </form>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-title">
+                        <h3 class="text-center info">Users Profile</h3>
+                    </div>
+
+                    <div class="card-body">
+                        <div *ngIf="searchUsers">
+                            <div>
+                                <img src="{{user.avatar_url}}" alt="profile" class="img-fluid rounded-circle img-responsive">
+                            </div>
+                            <br>
+                            <div>
+                                <a href="{{user.html_url}}" target="_blank"><button class="btn btn-success">Go To Profile</button></a>
+                                <br>
+                            </div>
+
+                            <div>
+
+
+                                <h4>{{user.name}}</h4>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <p class="btn btn-warning">Follwers:<br><span>{{user.followers}}</span></p>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <p class="btn btn-danger">Following:<br><span>{{user.following}}</span></p>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <p class="btn btn-info">Repositories:<br><span>{{user.public_repos}}</span></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div *ngIf="!searchUsers">
+                        <div class="container repo-row">
+                            <div *ngFor="let rep of repo" class="card">
+                                <a href="{{rep.html_url}}" target="_blank">
+                                    <h3>{{rep.name}}</h3>
+                                    <p>{{rep.description}}</p>
+                                    <!-- <p>{{rep.created_at |dateCount}}</p> -->
+                                </a>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
